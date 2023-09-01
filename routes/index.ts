@@ -1,10 +1,11 @@
+import { Request, Response, NextFunction } from "express";
 var express = require("express");
 var router = express.Router();
 
 const message_controller = require("../controllers/message_controller");
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", function (req: Request, res: Response, next: NextFunction) {
   res.render("index", { title: "Express" });
 });
 

@@ -12,10 +12,13 @@ block content
 				input#lastname.form-control(type='text' placeholder='Enter your last name' name='lastname' required='true')
 		div.form-group
 			label(for='username') Username:
-				input#username.form-control(type='text' placeholder='Enter your email address' name='username' required='true' )
+				input#username.form-control(type='email' placeholder='Enter your email address' name='username' required='true' )
 		div.form-group
 			label(for='password') Password:
-				input#password.form-control(type='text' placeholder='Choose a password' name='password' required='true'  )
+				input#password.form-control(type='password' placeholder='Choose a password' name='password' required='true'  )
+		div.form-group
+			label(for='confirmpassword') Confirm Password:
+				input#confirmpassword.form-control(type='password' placeholder='Choose a password' name='confirmpassword' required='true'  )
 		button.btn.btn-primary(type='submit') Submit
 
 

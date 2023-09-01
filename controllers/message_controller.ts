@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 const User = require("../models/user");
 const Message = require("../models/message");
+const bcrypt = require("bcryptjs");
 
 const { body, validationResult } = require("express-validator");
 
@@ -31,6 +32,13 @@ exports.sign_up_form_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
+  body("confirmpassword").custom((value, { req }) => {
+    if (value === req.body.password) {
+      return true;
+    } else {
+      throw new Error("Passwords do not match");
+    }
+  }),
   asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     // console.log(errors);
@@ -50,9 +58,18 @@ exports.sign_up_form_post = [
         messages: undefined,
         membership: false,
       });
-
-      await newUser.save();
-      res.redirect(newUser.url);
+      bcrypt.hash(
+        newUser.password,
+        10,
+        async (err: object, hashedPassword: string) => {
+          if (err) {
+            throw new Error("Hashing error");
+          }
+          newUser.password = hashedPassword;
+          await newUser.save();
+          res.redirect(newUser.url);
+        }
+      );
     }
   }),
 ];
