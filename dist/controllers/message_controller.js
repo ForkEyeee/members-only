@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const User = require("../models/user");
 const Message = require("../models/message");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 exports.sign_up_form_get = asyncHandler(async (req, res, next) => {
@@ -66,3 +67,17 @@ exports.sign_up_form_post = [
         }
     }),
 ];
+exports.new_member_get = asyncHandler(async (req, res, next) => {
+    res.render("new_member_form", {
+        title: "Gain Membership",
+    });
+});
+exports.login_form_get = asyncHandler(async (req, res, next) => {
+    res.render("login_form", {
+        title: "Login",
+    });
+});
+exports.login_form_post = asyncHandler(passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/",
+}));
