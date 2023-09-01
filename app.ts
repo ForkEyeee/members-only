@@ -52,11 +52,11 @@ passport.use(
     }
   })
 );
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function (user: any, done: any) {
   done(null, user.id);
 });
 
-passport.deserializeUser(async function (id, done) {
+passport.deserializeUser(async function (id: any, done: any) {
   try {
     const user = await User.findById(id);
     done(null, user);
@@ -76,7 +76,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(function (req, res, next) {
+app.use(function (req: Request, res: Response, next: NextFunction) {
   res.locals.currentUser = req.user;
   next();
 });
