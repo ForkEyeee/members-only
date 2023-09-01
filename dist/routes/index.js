@@ -14,4 +14,5 @@ router.post("/signup-form", message_controller.sign_up_form_post);
 // router.get("/new-member", message_controller.new_member_get);
 router.get("/login-form", message_controller.login_form_get);
 router.post("/login-form", message_controller.login_form_post);
+router.get("/logout", message_controller.logout_get);
 module.exports = router;

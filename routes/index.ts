@@ -20,4 +20,5 @@ router.get("/login-form", message_controller.login_form_get);
 
 router.post("/login-form", message_controller.login_form_post);
 
+router.get("/logout", message_controller.logout_get);
 module.exports = router;
