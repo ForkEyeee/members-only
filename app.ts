@@ -30,8 +30,6 @@ const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 2000,
 });
-app.use("/", indexRouter);
-app.use("/users", usersRouter); //routes
 
 app.use(limiter);
 app.use(compression());
@@ -40,6 +38,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/", indexRouter);
+app.use("/users", usersRouter); //routes
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
