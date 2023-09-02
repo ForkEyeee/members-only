@@ -3,11 +3,11 @@ extends layout
 block content
 	h1= title
 	p Welcome to #{title}
-	if currentUser 
+	if JSON.stringify(currentUser) !== '{}' 
 		p You are a User
 	if currentUser.membership 
 		p You are a Member
-	if message_list 
+	if message_list && JSON.stringify(currentUser) !== '{}'
 		each message in message_list
 			if currentUser.membership
 				ul

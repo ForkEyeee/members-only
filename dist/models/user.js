@@ -8,7 +8,8 @@ const UserSchema = new Schema({
     username: { type: String, required: true, maxLength: 200 },
     password: { type: String, required: true },
     messages: [{ type: Schema.Types.ObjectId, ref: "messages" }],
-    membership: { type: Boolean },
+    membership: { type: Boolean, required: true },
+    admin: { type: Boolean },
 }, { collection: "users" });
 UserSchema.virtual("url").get(function () {
     // We don't use an arrow function as we'll need the this object
