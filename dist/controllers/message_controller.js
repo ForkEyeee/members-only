@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv").config();
 const User = require("../models/user");
 const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 exports.message_list = asyncHandler(async (req, res, next) => {
+    console.log(process.env.password);
     const messages = await Message.find({});
     res.render("index", {
         title: "Messages",

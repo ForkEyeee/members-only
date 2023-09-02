@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 import { Request, Response, NextFunction } from "express";
 const User = require("../models/user");
 const Message = require("../models/message");
@@ -7,6 +9,7 @@ const asyncHandler = require("express-async-handler");
 
 exports.message_list = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log(process.env.password);
     const messages = await Message.find({});
     res.render("index", {
       title: "Messages",
