@@ -41,7 +41,7 @@ Make sure [Node.js](https://nodejs.org/en/download/) and [npm](http://npmjs.com)
    npm run serverstart
    ```
 
-Access the application in your browser at `http://localhost:8000`.
+Access the application in your browser at `http://localhost:8000`. The membership password is "pizza"
 
 ## Building for Production
 
