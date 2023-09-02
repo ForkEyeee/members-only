@@ -7,6 +7,8 @@ block content
 		p You are a User
 	if currentUser.membership 
 		p You are a Member
+	if currentUser.admin 
+		p You are an admin
 	if message_list 
 		each message in message_list
 			if currentUser.membership
@@ -14,9 +16,11 @@ block content
 					li #{message.title} 
 					li #{message.timestamp}
 					li #{message.text}
-			else 
-				ul
-					li #{message.text}
+			else
+				div 
+					li <strong>From:</strong> Anonymous
+					li <strong>Title:</strong> #{message.title} 
+					li <strong>Message:</strong> #{message.text}
 			if currentUser.admin 
 				a(href="delete/"+ message.url ) Delete    
 

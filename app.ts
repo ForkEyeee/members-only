@@ -71,16 +71,17 @@ app.use(limiter);
 app.use(compression());
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(cookieParser());
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req: Request, res: Response, next: NextFunction) {
   res.locals.currentUser = req.user !== undefined ? req.user : {}; //locals
-  // res.locals.currentUserMembership = req.user.membership;
+  console.log(path.join(__dirname, "../public"));
   next();
 });
+
 app.use("/", indexRouter);
 
 const mongoose = require("mongoose");
