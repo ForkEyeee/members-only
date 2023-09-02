@@ -36,8 +36,10 @@ exports.membership_form_get = asyncHandler(
   }
 );
 exports.membership_form_post = [
-  body("secretpassword").custom(async (value: object, { req }: any) => {
+  body("secretpassword").custom(async (value: any, { req }: any) => {
     const secretPassword = process.env.PASSWORD;
+    console.log("Env password:", secretPassword);
+    console.log("Received password:", req.body.secretpassword);
     if (secretPassword === req.body.secretpassword) {
       return true;
     } else {
