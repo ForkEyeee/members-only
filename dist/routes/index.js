@@ -23,4 +23,7 @@ router.get("/signup", index_controller.sign_up_form_get);
 router.get("/login", index_controller.login_form_get);
 router.get("/membership", index_controller.membership_form_get);
 router.post("/membership", index_controller.membership_form_post);
+//Message routes
+router.get("/create-message", message_controller.new_message_form_get);
+router.post("/create-message", message_controller.new_message_form_post);
 module.exports = router;
