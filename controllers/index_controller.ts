@@ -36,7 +36,9 @@ exports.membership_form_get = asyncHandler(
 );
 exports.membership_form_post = [
   body("secretpassword").custom(async (value: object, { req }: any) => {
-    this.value = process.env.password;
+    process.env.MONGODB_URI
+      ? (this.value = db.password.find({}, { password: 1, _id: 0 }))
+      : (this.value = process.env.password);
     if (this.value === req.body.secretpassword) {
       return true;
     } else {
