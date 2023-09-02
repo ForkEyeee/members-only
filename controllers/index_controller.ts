@@ -37,13 +37,13 @@ exports.membership_form_get = asyncHandler(
 );
 exports.membership_form_post = [
   body("secretpassword").custom(async (value: any, { req }: any) => {
-    const secretPassword = await Password.findOne(
-      {},
-      { password: 1, _id: 0 }
-    ).exec();
+    const secretPasswordDev = process.env.MONGODB_URI && process.env.PASSWORD;
+    const secretPasswordProd =
+      process.env.dev_db_url &&
+      (await Password.findOne({}, { password: 1, _id: 0 }).exec());
     if (
-      secretPassword.password === req.body.secretpassword ||
-      process.env.PASSWORD === req.body.secretpassword
+      secretPasswordDev === req.body.secretpassword ||
+      secretPasswordProd.password === req.body.secretpassword
     ) {
       return true;
     } else {
