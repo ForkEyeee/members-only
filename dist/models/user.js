@@ -11,8 +11,4 @@ const UserSchema = new Schema({
     membership: { type: Boolean, required: true },
     admin: { type: Boolean },
 }, { collection: "users" });
-UserSchema.virtual("url").get(function () {
-    // We don't use an arrow function as we'll need the this object
-    return `/signup/${this._id}`;
-});
 module.exports = mongoose.model("User", UserSchema);

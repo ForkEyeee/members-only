@@ -2,7 +2,7 @@
 
 # Members Only Clubhouse Application
 
-A web application for an exclusive clubhouse where members can post anonymously, offering enhanced features for members and admins.
+A web application for an exclusive clubhouse where members can post anonymously, with extra features for members and admins.
 
 ## Setup and Installation
 
@@ -17,13 +17,13 @@ Make sure [Node.js](https://nodejs.org/en/download/) and [npm](http://npmjs.com)
 1. Clone the project repository:
 
    ```bash
-   git clone https://github.com/ForkEyeee/members-only-clubhouse
+   git clone https://github.com/ForkEyeee/members-only
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd members-only-clubhouse
+   cd members-only
    ```
 
 3. Install required dependencies:
@@ -53,8 +53,6 @@ npm run build
 
 ## Technology Stack
 
-The Members Only Clubhouse is powered by:
-
 - [Node.js](https://nodejs.org/en/) for a robust runtime environment.
 - [Express](https://expressjs.com/) for web server utilities.
 - [Pug](https://pugjs.org/) for rendering server-side templates.
@@ -69,7 +67,7 @@ The Members Only Clubhouse is powered by:
 1. **Secure Sign-up/Login**: User registration fortified with bcrypt encryption and Passport.js authentication.
 2. **Member Exclusivity**: Only members get to view author details and timestamps of messages.
 3. **Message Posting**: Any registered user can post messages, but only members see the full details.
-4. **Admin Privileges**: Admins have a higher authority to manage posts and view all details.
+4. **Admin Privileges**: Admins have a higher authority to delete posts.
 5. **Club Membership**: A secret passcode page ensures exclusivity for members.
 6. **Dynamic Visibility**: Content visibility adjusts based on user roles (visitor, member, admin).
 

@@ -1,9 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 const User = require("../models/user");
 const Message = require("../models/message");
-const Password = require("../models/password");
-const bcrypt = require("bcryptjs");
-const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 
 const asyncHandler = require("express-async-handler");
@@ -11,8 +8,6 @@ const asyncHandler = require("express-async-handler");
 exports.message_list = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const messages = await Message.find({});
-    // console.log(res.locals.currentUser);
-    // console.log(JSON.stringify(res.locals.currentUser) === "{}");
     console.log(messages[0].url);
     res.render("index", {
       title: "Messages",

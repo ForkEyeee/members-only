@@ -10,7 +10,7 @@ const MessageSchema = new Schema(
   { collection: "messages" }
 );
 
-MessageSchema.virtual("url").get(function () {
+MessageSchema.virtual("url").get(function (): string {
   // We don't use an arrow function as we'll need the this object
   return `${this._id}`;
 });

@@ -29,7 +29,6 @@ exports.membership_form_get = asyncHandler(async (req, res, next) => {
 exports.membership_form_post = asyncHandler(async (req, res, next) => {
     // console.log(req.user);
     const getUser = req.user;
-    console.log();
     const membershipPassword = await Password.find({}, { password: 1, _id: 0 }).exec();
     console.log(membershipPassword[0].password);
     if (membershipPassword[0].password === req.body.secretpassword) {
