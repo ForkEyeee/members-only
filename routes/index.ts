@@ -14,7 +14,7 @@ router.get("/home", message_controller.message_list);
 //Auth routes
 router.post("/signup", auth_controller.sign_up_form_post);
 router.post("/login", auth_controller.login_form_post);
-router.post("/logout", auth_controller.logout_post);
+router.get("/logout", auth_controller.logout_get);
 
 //Index routes
 router.get("/signup", index_controller.sign_up_form_get);

@@ -75,7 +75,7 @@ exports.login_form_post = asyncHandler(
   })
 );
 
-exports.logout_post = asyncHandler(
+exports.logout_get = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     req.logout(function (err: string) {
       if (err) {
