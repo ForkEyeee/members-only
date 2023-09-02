@@ -22,7 +22,8 @@ router.get("/login", index_controller.login_form_get);
 router.get("/membership", index_controller.membership_form_get);
 router.post("/membership", index_controller.membership_form_post);
 //Message routes
-// router.get("/home", );
 router.get("/create-message", message_controller.new_message_form_get);
 router.post("/create-message", message_controller.new_message_form_post);
+router.get("/delete/:id", message_controller.message_delete_get);
+router.post("/delete/:id", message_controller.message_delete_post);
 module.exports = router;

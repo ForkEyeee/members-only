@@ -6,19 +6,22 @@ block content
 	form(method='POST' action='')
 		div.form-group
 			label(for='firstname') FirstName:
-			input#firstname.form-control(type='text' placeholder='Enter your first name' name='firstname' required='true' )
+			input#firstname.form-control(type='text' placeholder='Enter your first name' name='firstname' required='true' value=(first_name ? first_name : ""))
 		div.form-group
 			label(for='lastname') LastName:
-				input#lastname.form-control(type='text' placeholder='Enter your last name' name='lastname' required='true')
+				input#lastname.form-control(type='text' placeholder='Enter your last name' name='lastname' required='true' value=(last_name ? last_name : ""))
 		div.form-group
 			label(for='username') Username:
-				input#username.form-control(type='email' placeholder='Enter your email address' name='username' required='true' )
+				input#username.form-control(type='email' placeholder='Enter your email address' name='username' required='true' value=(username ? username : ""))
 		div.form-group
 			label(for='password') Password:
 				input#password.form-control(type='password' placeholder='Choose a password' name='password' required='true'  )
 		div.form-group
 			label(for='confirmpassword') Confirm Password:
 				input#confirmpassword.form-control(type='password' placeholder='Choose a password' name='confirmpassword' required='true'  )
+		div.form-group
+			label(for='admin') Admin:
+				input#admin.form-control(type='checkbox' name='admin' )
 		button.btn.btn-primary(type='submit') Submit
 
 

@@ -34,9 +34,13 @@ exports.sign_up_form_post = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
+            console.log(req.body);
             res.render("sign_up_form", {
                 title: "Create an Account",
                 errors: errors.array(),
+                first_name: req.body.firstname,
+                last_name: req.body.lastname,
+                username: req.body.username,
             });
         }
         else {
@@ -47,6 +51,7 @@ exports.sign_up_form_post = [
                 password: req.body.password,
                 messages: undefined,
                 membership: false,
+                admin: req.body.admin === "on" ? true : false,
             });
             bcrypt.hash(newUser.password, 10, async (err, hashedPassword) => {
                 if (err) {

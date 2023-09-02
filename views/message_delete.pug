@@ -1,0 +1,7 @@
+extends layout
+
+block content
+	h1= title
+	h4 Are you sure you would like to delete '#{message.title}'
+	form(method='POST' action='')
+		button.btn.btn-primary(type='submit') Delete

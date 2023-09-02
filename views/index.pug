@@ -7,7 +7,7 @@ block content
 		p You are a User
 	if currentUser.membership 
 		p You are a Member
-	if message_list && JSON.stringify(currentUser) !== '{}'
+	if message_list 
 		each message in message_list
 			if currentUser.membership
 				ul
@@ -17,6 +17,10 @@ block content
 			else 
 				ul
 					li #{message.text}
+			if currentUser.admin 
+				a(href="delete/"+ message.url ) Delete    
+
+
 
 
 

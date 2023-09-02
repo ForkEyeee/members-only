@@ -9,8 +9,9 @@ const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 exports.message_list = asyncHandler(async (req, res, next) => {
     const messages = await Message.find({});
-    console.log(res.locals.currentUser);
-    console.log(JSON.stringify(res.locals.currentUser) === "{}");
+    // console.log(res.locals.currentUser);
+    // console.log(JSON.stringify(res.locals.currentUser) === "{}");
+    console.log(messages[0].url);
     res.render("index", {
         title: "Messages",
         message_list: messages,
@@ -56,3 +57,14 @@ exports.new_message_form_post = [
         }
     }),
 ];
+exports.message_delete_get = asyncHandler(async (req, res, next) => {
+    const message = await Message.findOne({ _id: req.params.id });
+    res.render("message_delete", {
+        title: "Delete message",
+        message: message,
+    });
+});
+exports.message_delete_post = asyncHandler(async (req, res, next) => {
+    await Message.deleteOne({ _id: req.params.id }).exec();
+    res.redirect("/home");
+});
