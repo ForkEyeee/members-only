@@ -12,7 +12,7 @@ const MessageSchema = new Schema(
 
 MessageSchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
-  return `/signup-form/${this._id}`;
+  return `/signup/${this._id}`;
 });
 
 module.exports = mongoose.model("Message", MessageSchema);

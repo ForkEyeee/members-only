@@ -14,7 +14,6 @@ const compression = require("compression");
 const helmet = require("helmet");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 
 var app = express();
 
@@ -39,10 +38,11 @@ passport.use(
   new LocalStrategy(async (username: string, password: string, done) => {
     try {
       const user = await User.findOne({ username: username });
-      const match = await bcrypt.compare(password, user.password);
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
+      const match = await bcrypt.compare(password, user.password);
+
       if (!match) {
         return done(null, false, { message: "Incorrect password" });
       }
@@ -64,24 +64,24 @@ passport.deserializeUser(async function (id: any, done: any) {
     done(err);
   }
 });
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.use(express.urlencoded({ extended: false }));
 
 app.use(limiter);
 app.use(compression());
 app.use(logger("dev"));
 app.use(express.json());
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(cookieParser());
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(function (req: Request, res: Response, next: NextFunction) {
-  res.locals.currentUser = req.user;
+  console.log(req.user);
+  res.locals.currentUser = req.user; //locals
   next();
 });
 app.use("/", indexRouter);
-app.use("/users", usersRouter); //routes
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);

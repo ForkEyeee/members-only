@@ -15,10 +15,12 @@ router.get("/home", function (req, res, next) {
     res.render("index", { title: "Express" });
 });
 //Auth routes
-router.post("/signup-form", auth_controller.sign_up_form_post);
-router.post("/login-form", auth_controller.login_form_post);
+router.post("/signup", auth_controller.sign_up_form_post);
+router.post("/login", auth_controller.login_form_post);
 router.get("/logout", auth_controller.logout_get);
 //Index routes
-router.get("/signup-form", index_controller.sign_up_form_get);
-router.get("/login-form", index_controller.login_form_get);
+router.get("/signup", index_controller.sign_up_form_get);
+router.get("/login", index_controller.login_form_get);
+router.get("/membership", index_controller.membership_form_get);
+router.post("/membership", index_controller.membership_form_post);
 module.exports = router;

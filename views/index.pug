@@ -4,8 +4,6 @@ block content
 	h1= title
 	p Welcome to #{title}
 	if currentUser 
-		| You are a User
-		a(href= "/logout") Logout
-	else 
-		a(href= "/signup-form") Sign up
-		a(href= "/login-form") Login
+		p You are a User
+	if currentUser.membership
+		p You are a member

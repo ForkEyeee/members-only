@@ -54,16 +54,20 @@ exports.sign_up_form_post = [
                 }
                 newUser.password = hashedPassword;
                 await newUser.save();
-                res.redirect("/home");
+                res.redirect("/login");
             });
         }
     }),
 ];
 exports.login_form_post = asyncHandler(passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login-form",
+    successRedirect: "/home",
+    failureRedirect: "/login",
     failureMessage: true,
-}));
+}), (req, res) => {
+    console.log(`User has logged in ${JSON.stringify(req.user, null, 2)}`);
+    req.session.user_id = req.user.id; //for instance.
+    return; //old habit of mine, that even on void functions to at least use return without returning anything to clear out the Stack.
+});
 exports.logout_get = asyncHandler(async (req, res, next) => {
     req.logout(function (err) {
         if (err) {
