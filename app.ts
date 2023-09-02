@@ -77,8 +77,8 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req: Request, res: Response, next: NextFunction) {
-  console.log(req.user);
   res.locals.currentUser = req.user; //locals
+  // res.locals.currentUserMembership = req.user.membership;
   next();
 });
 app.use("/", indexRouter);

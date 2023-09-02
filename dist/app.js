@@ -68,8 +68,8 @@ app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req, res, next) {
-    console.log(req.user);
     res.locals.currentUser = req.user; //locals
+    // res.locals.currentUserMembership = req.user.membership;
     next();
 });
 app.use("/", indexRouter);
