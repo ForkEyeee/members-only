@@ -13,9 +13,9 @@ block content
 		each message in message_list
 			if currentUser.membership
 				ul
-					li #{message.title} 
-					li #{message.timestamp}
-					li #{message.text}
+					li <strong>Title:</strong> #{message.title} 
+					li <strong>Date:</strong> #{message.timestamp}
+					li <strong>Message:</strong> #{message.text}
 			else
 				div 
 					li <strong>From:</strong> Anonymous

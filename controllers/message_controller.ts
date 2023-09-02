@@ -8,7 +8,6 @@ const asyncHandler = require("express-async-handler");
 exports.message_list = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const messages = await Message.find({});
-    console.log(messages[0].url);
     res.render("index", {
       title: "Messages",
       message_list: messages,
@@ -34,7 +33,12 @@ exports.new_message_form_post = [
     const errors = validationResult(req);
     const message = new Message({
       title: req.body.title,
-      timestamp: new Date(),
+      timestamp: new Date()
+        .toJSON()
+        .slice(0, 10)
+        .split("-")
+        .reverse()
+        .join("/"),
       text: req.body.message,
     });
     if (!errors.isEmpty()) {
@@ -46,19 +50,19 @@ exports.new_message_form_post = [
     } else {
       const newMessage = new Message({
         title: req.body.title,
-        timestamp: new Date(),
+        timestamp: new Date()
+          .toJSON()
+          .slice(0, 10)
+          .split("-")
+          .reverse()
+          .join("/"),
         text: req.body.message,
       });
-      // const findUser = await User.find({ username: req.user.username }).exec();
       await User.findOneAndUpdate(
         { username: req.user.username },
         { $push: { messages: newMessage } }
       );
-
-      console.log(req.user);
-
       await newMessage.save();
-      // res.redirect(newMessage.url);
       res.redirect("/");
     }
   }),

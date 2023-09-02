@@ -38,7 +38,6 @@ exports.membership_form_get = asyncHandler(
 
 exports.membership_form_post = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    // console.log(req.user);
     const getUser = req.user;
     const membershipPassword = await Password.find(
       {},
