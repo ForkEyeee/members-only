@@ -1,3 +1,4 @@
+require("dotenv").config();
 import { Request, Response, NextFunction } from "express";
 const User = require("../models/user");
 const Password = require("../models/password");
