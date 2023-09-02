@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv").config();
 const User = require("../models/user");
 const Password = require("../models/password");
 const { body, validationResult } = require("express-validator");
@@ -26,8 +27,9 @@ exports.membership_form_get = asyncHandler(async (req, res, next) => {
 });
 exports.membership_form_post = [
     body("secretpassword").custom(async (value, { req }) => {
-        this.value = process.env.password;
-        if (this.value === req.body.secretpassword) {
+        const secretPassword = await Password.findOne({}, { password: 1, _id: 0 }).exec();
+        if (secretPassword.password === req.body.secretpassword ||
+            process.env.PASSWORD === req.body.secretpassword) {
             return true;
         }
         else {

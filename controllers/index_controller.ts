@@ -37,10 +37,14 @@ exports.membership_form_get = asyncHandler(
 );
 exports.membership_form_post = [
   body("secretpassword").custom(async (value: any, { req }: any) => {
-    const secretPassword = process.env.PASSWORD;
-    console.log("Env password:", secretPassword);
-    console.log("Received password:", req.body.secretpassword);
-    if (secretPassword === req.body.secretpassword) {
+    const secretPassword = await Password.findOne(
+      {},
+      { password: 1, _id: 0 }
+    ).exec();
+    if (
+      secretPassword.password === req.body.secretpassword ||
+      process.env.PASSWORD === req.body.secretpassword
+    ) {
       return true;
     } else {
       throw new Error("Wrong secret password");
