@@ -6,6 +6,7 @@ const MessageSchema = new Schema({
     title: { type: String, required: true, maxLength: 50 },
     timestamp: { type: String, required: true },
     text: { type: String, required: true, maxLength: 300 },
+    fullname: { type: String, required: true },
 }, { collection: "messages" });
 MessageSchema.virtual("url").get(function () {
     // We don't use an arrow function as we'll need the this object

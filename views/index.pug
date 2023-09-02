@@ -12,11 +12,12 @@ block content
 	if message_list 
 		each message in message_list
 			if currentUser.membership
-				ul
+				div
+					li <strong>From:</strong> #{message.fullname}
 					li <strong>Title:</strong> #{message.title} 
 					li <strong>Date:</strong> #{message.timestamp}
 					li <strong>Message:</strong> #{message.text}
-			else
+			else if currentUser 
 				div 
 					li <strong>From:</strong> Anonymous
 					li <strong>Title:</strong> #{message.title} 

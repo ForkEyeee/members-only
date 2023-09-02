@@ -33,6 +33,7 @@ exports.new_message_form_post = [
                 .reverse()
                 .join("/"),
             text: req.body.message,
+            fullname: req.user.first_name + req.user.last_name,
         });
         if (!errors.isEmpty()) {
             res.render("new_message_form", {
@@ -51,10 +52,11 @@ exports.new_message_form_post = [
                     .reverse()
                     .join("/"),
                 text: req.body.message,
+                fullname: req.user.first_name + " " + req.user.last_name,
             });
-            await User.findOneAndUpdate({ username: req.user.username }, { $push: { messages: newMessage } });
             await newMessage.save();
-            res.redirect("/");
+            await User.findOneAndUpdate({ username: req.user.username }, { $push: { messages: newMessage } });
+            res.redirect("/home");
         }
     }),
 ];
