@@ -33,7 +33,6 @@ exports.sign_up_form_post = [
   asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(req.body);
       res.render("sign_up_form", {
         title: "Create an Account",
         errors: errors.array(),

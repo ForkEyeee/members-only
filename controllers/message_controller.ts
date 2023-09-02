@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { ClientSession } from "mongodb";
 const User = require("../models/user");
 const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");

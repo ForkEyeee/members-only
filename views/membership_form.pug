@@ -2,12 +2,12 @@ extends layout
 
 block content
 	if currentUser.membership
-		h1 You are already a member! 
+		h1 You are a member! 
 	else
 		h1= title
 			form(method='POST' action='')
 				div.form-group
-					input#firstname.form-control(type='text' placeholder='Enter secret password' name = 'secretpassword' required='true' )
+					input#firstname.form-control(type='password' placeholder='Enter secret password' name = 'secretpassword' required='true' )
 				button.btn.btn-primary(type='submit') Submit
 
 			if errors
