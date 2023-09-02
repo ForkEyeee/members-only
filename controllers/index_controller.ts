@@ -17,7 +17,7 @@ exports.sign_up_form_get = asyncHandler(
 
 exports.login_form_get = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const lastError = req.session
+    const lastError = req.session.messages
       ? req.session.messages[req.session.messages.length - 1] // show form error messages for login
       : "";
     console.log(lastError);
