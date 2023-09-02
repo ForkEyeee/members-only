@@ -25,7 +25,9 @@ exports.membership_form_get = asyncHandler(async (req, res, next) => {
 });
 exports.membership_form_post = [
     body("secretpassword").custom(async (value, { req }) => {
-        this.value = await Password.findOne({}, { password: 1, _id: 0 }).exec();
+        process.env.MONGODB_URI
+            ? (this.value = process.env.Password)
+            : (this.value = await Password.findOne({}, { password: 1, _id: 0 }).exec());
         if (this.value.password === req.body.secretpassword) {
             return true;
         }
