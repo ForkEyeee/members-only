@@ -7,6 +7,14 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
+exports.message_list = asyncHandler(async (req, res, next) => {
+    const messages = await Message.find({});
+    console.log(req.user);
+    res.render("index", {
+        title: "Messages",
+        message_list: messages,
+    });
+});
 exports.new_message_form_get = asyncHandler(async (req, res, next) => {
     res.render("new_message_form", {
         title: "Create a message",

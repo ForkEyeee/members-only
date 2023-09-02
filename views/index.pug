@@ -5,5 +5,20 @@ block content
 	p Welcome to #{title}
 	if currentUser 
 		p You are a User
-	//- if currentUser.membership
-	//- 	p You are a member
+	if currentUser.membership 
+		p You are a Member
+	if message_list 
+		each message in message_list
+			if currentUser.membership
+				ul
+					li #{message.title} 
+					li #{message.timestamp}
+					li #{message.text}
+			else 
+				ul
+					li #{message.text}
+
+
+
+
+

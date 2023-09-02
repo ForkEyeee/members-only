@@ -8,6 +8,17 @@ const { body, validationResult } = require("express-validator");
 
 const asyncHandler = require("express-async-handler");
 
+exports.message_list = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const messages = await Message.find({});
+    console.log(req.user);
+    res.render("index", {
+      title: "Messages",
+      message_list: messages,
+    });
+  }
+);
+
 exports.new_message_form_get = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     res.render("new_message_form", {

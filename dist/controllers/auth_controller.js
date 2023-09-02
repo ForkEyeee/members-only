@@ -54,7 +54,7 @@ exports.sign_up_form_post = [
                 }
                 newUser.password = hashedPassword;
                 await newUser.save();
-                res.redirect("/login");
+                req.user ? res.redirect("/home") : res.redirect("/login");
             });
         }
     }),

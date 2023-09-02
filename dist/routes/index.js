@@ -11,9 +11,7 @@ const user_controller = require("../controllers/user_controller");
 router.get("/", function (req, res, next) {
     res.redirect("/home");
 });
-router.get("/home", function (req, res, next) {
-    res.render("index", { title: "Express" });
-});
+router.get("/home", message_controller.message_list);
 //Auth routes
 router.post("/signup", auth_controller.sign_up_form_post);
 router.post("/login", auth_controller.login_form_post);
@@ -24,6 +22,7 @@ router.get("/login", index_controller.login_form_get);
 router.get("/membership", index_controller.membership_form_get);
 router.post("/membership", index_controller.membership_form_post);
 //Message routes
+// router.get("/home", );
 router.get("/create-message", message_controller.new_message_form_get);
 router.post("/create-message", message_controller.new_message_form_post);
 module.exports = router;
